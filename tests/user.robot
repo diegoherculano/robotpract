@@ -27,3 +27,4 @@ POST User
     ...    administrador=true
     ${RESPONSE}    POST    ${BASE_URL}/usuarios    headers=${HEADERS}    json=${JSON}
     Should Be Equal As Strings    ${RESPONSE.status_code}    201
+    Should Be Equal As Strings    ${RESPONSE.json()["message"]}    Cadastro realizado com sucesso
