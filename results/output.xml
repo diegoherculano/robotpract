@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-19T00:24:22.550066" rpa="false" schemaversion="5">
+<suite id="s1" name="Robot-Pract" source="/home/diegoh/Projects/robot-pract">
+<suite id="s1-s1" name="Tests" source="/home/diegoh/Projects/robot-pract/tests">
+<suite id="s1-s1-s1" name="User" source="/home/diegoh/Projects/robot-pract/tests/user.robot">
+<test id="s1-s1-s1-t1" name="POST User" line="20">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2024-05-19T00:24:22.883878" level="INFO">${EMAIL_FAKE} = rperez@example.org</msg>
+<var>${EMAIL_FAKE}</var>
+<status status="PASS" start="2024-05-19T00:24:22.883167" elapsed="0.000879"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-19T00:24:22.885152" level="INFO">${HEADERS} = {'Content-Type': 'application/json'}</msg>
+<var>${HEADERS}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-19T00:24:22.884606" elapsed="0.000689"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-19T00:24:22.886064" level="INFO">${JSON} = {'nome': 'Douglas Araujo', 'email': 'rperez@example.org', 'password': '12332asdads', 'administrador': 'true'}</msg>
+<var>${JSON}</var>
+<arg>nome=Douglas Araujo</arg>
+<arg>email=${EMAIL_FAKE}</arg>
+<arg>password=12332asdads</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-19T00:24:22.885598" elapsed="0.000593"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-05-19T00:24:23.621554" level="INFO">POST Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '109'} 
+ body=b'{"nome": "Douglas Araujo", "email": "rperez@example.org", "password": "12332asdads", "administrador": "true"}' 
+ </msg>
+<msg time="2024-05-19T00:24:23.622060" level="INFO">POST Response : url=https://serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '4c2cebaa1660eeacaf3761a1ccf721e4', 'Date': 'Sun, 19 May 2024 03:24:23 GMT', 'Server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "VEWXGb7s2n7G2e9I"
+} 
+ </msg>
+<msg time="2024-05-19T00:24:23.622437" level="INFO">${RESPONSE} = &lt;Response [201]&gt;</msg>
+<var>${RESPONSE}</var>
+<arg>${BASE_URL}/usuarios</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>json=${JSON}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-05-19T00:24:22.886469" elapsed="0.736134"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-05-19T00:24:23.625779" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${RESPONSE.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-05-19T00:24:23.623685" elapsed="0.002488"/>
+</kw>
+<status status="PASS" start="2024-05-19T00:24:22.881573" elapsed="0.745135"/>
+</test>
+<doc>User Scenary</doc>
+<status status="PASS" start="2024-05-19T00:24:22.574570" elapsed="1.054925"/>
+</suite>
+<status status="PASS" start="2024-05-19T00:24:22.572548" elapsed="1.059995"/>
+</suite>
+<status status="PASS" start="2024-05-19T00:24:22.553218" elapsed="1.082243"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot-Pract">Robot-Pract</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Tests">Robot-Pract.Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="User">Robot-Pract.Tests.User</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
